@@ -27,7 +27,7 @@ public class LoginServiceImpl implements LoginService {
         return ResponseLoginDto.builder()
                 .id(user.getId())
                 .email(user.getEmail())
-                .userName(user.getUserName())
+                .userName(user.getNickName())
                 .build();
     }
 }
