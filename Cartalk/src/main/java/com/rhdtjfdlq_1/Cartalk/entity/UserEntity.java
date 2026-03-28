@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "users")
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -28,15 +27,11 @@ public class UserEntity {
     private String password;
 
     // 이름
-    @Column(name = "user_name", nullable = false)
-    private String userName;
-
-    // 주민번호 (보안상 암호화 or 저장 x 방향으로 진행할 예정)
-    @Column(name = "user_num", nullable = false)
-    private String userNum;
+    @Column(name = "nick_name")
+    private String nickName;
 
     // 전화번호
-    @Column(name = "phone_num", nullable = false)
+    @Column(name = "phone_num")
     private String phoneNum;
 
     // 계정 생성 시간
