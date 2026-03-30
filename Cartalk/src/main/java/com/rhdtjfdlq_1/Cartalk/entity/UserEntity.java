@@ -26,6 +26,10 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
 
+    public void changePassword(String newPassword) {
+        this.password = newPassword;
+    }
+
     // 이름
     @Column(name = "nick_name")
     private String nickName;

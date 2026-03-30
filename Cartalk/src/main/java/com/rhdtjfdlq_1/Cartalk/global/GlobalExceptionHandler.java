@@ -30,4 +30,13 @@ public class GlobalExceptionHandler {
                 .badRequest()
                 .body(ResponseSignupDto.error(e.getMessage()));
     }
+
+    // 3. 인증 상태 관련 예외 (인증 안됨, 코드 만료 등)
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<ResponseSignupDto> handleIllegalStateException(IllegalStateException e) {
+
+        return ResponseEntity
+                .badRequest()
+                .body(ResponseSignupDto.error(e.getMessage()));
+    }
 }
