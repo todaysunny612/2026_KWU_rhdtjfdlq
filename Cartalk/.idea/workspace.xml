@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0f82b6fd-3d7e-4d3e-96b4-cdeeecfd6526" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/CartalkApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/CartalkApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/config/RedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/CarInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/CarInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/PasswordChangeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/PasswordChangeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/SendcodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/SendcodeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/SignupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/VerifyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/VerifyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestAccountDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestAccountDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestCarInfoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestCarInfoDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestLoginDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestLoginDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestPasswordChangeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestPasswordChangeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestProfileDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestProfileDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestSendcodeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestSendcodeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestSignupDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestSignupDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestVerifycodeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/RequestVerifycodeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/ResponseCarInfoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/ResponseCarInfoDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/ResponseLoginDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/ResponseLoginDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/ResponsePasswordChangeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/ResponsePasswordChangeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/ResponseSendcodeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/ResponseSendcodeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/ResponseSignupDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/ResponseSignupDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/ResponseVerifycodeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/dto/ResponseVerifycodeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/entity/CarEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/entity/CarEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/global/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/global/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/repository/CarInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/repository/CarInfoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/AccountServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/CarInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/CarInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/LoginServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/LoginServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/PasswordChangeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/PasswordChangeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/ProfileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/ProfileServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/SendcodeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/SendcodeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/SignupServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/SignupServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/VerifyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/impl/VerifyServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/CarInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/CarInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/PasswordChangeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/PasswordChangeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/ProfileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/SendcodeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/SendcodeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/SignupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/SignupService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/VerifyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/service/port/VerifyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/rhdtjfdlq_1/Cartalk_BE/CartalkApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cartalk_BE/src/test/java/com/rhdtjfdlq_1/Cartalk_BE/CartalkApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Cartalk" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;todaysunny612&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:rlathx/2026_KWU_rhdtjfdlq.git&quot;,
+    &quot;accountId&quot;: &quot;b58f99d2-9a73-47ac-86dd-99538bb52d95&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="3BQWQYh9hlPmUpq2hQX52m0tXOi" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build Cartalk.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.CartalkApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/choeheeseon/Desktop/KW/3-1/Cartalk/fork_repo/2026_KWU_rhdtjfdlq/Cartalk&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CartalkApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="com.rhdtjfdlq_1.Cartalk.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.rhdtjfdlq_1.Cartalk_BE.CartalkApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0f82b6fd-3d7e-4d3e-96b4-cdeeecfd6526" name="Changes" comment="" />
+      <created>1774421758930</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1774421758930</updated>
+      <workItem from="1774421760514" duration="3492000" />
+      <workItem from="1774428588563" duration="39000" />
+      <workItem from="1774428629606" duration="652000" />
+      <workItem from="1774484090477" duration="1468000" />
+      <workItem from="1774485764630" duration="2723000" />
+      <workItem from="1774686807018" duration="5213000" />
+      <workItem from="1774692153401" duration="3124000" />
+      <workItem from="1774708384991" duration="5402000" />
+      <workItem from="1774773290619" duration="2457000" />
+      <workItem from="1774867839701" duration="551000" />
+      <workItem from="1774868559271" duration="1683000" />
+      <workItem from="1774877290223" duration="6279000" />
+      <workItem from="1774886337252" duration="1054000" />
+      <workItem from="1774921207263" duration="3695000" />
+      <workItem from="1774937978241" duration="410000" />
+      <workItem from="1774951382434" duration="603000" />
+      <workItem from="1775087890782" duration="1989000" />
+      <workItem from="1775091118998" duration="459000" />
+      <workItem from="1775091593738" duration="15446000" />
+      <workItem from="1775524506500" duration="2039000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/controller/LoginController.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/rhdtjfdlq_1/Cartalk_BE/global/GlobalExceptionHandler.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/build.gradle.kts</url>
+          <line>30</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
