@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/chat")
+@RequestMapping("/api/chats")
 public class ChatController {
 
     private final ChatService chatService;
 
-    @PostMapping("/{userId}")
+    @PostMapping
     public ResponseEntity<ResponseCreateChatDto> createChatRoom(
-            @PathVariable Long userId,
             @RequestBody RequestCreateChatDto request
     ) {
-        ResponseCreateChatDto response = chatService.getOrCreateChatRoom(userId, request);
+        ResponseCreateChatDto response =
+                chatService.getOrCreateChatRoom(request.getUserId(), request);
         return ResponseEntity.ok(response);
     }
 }

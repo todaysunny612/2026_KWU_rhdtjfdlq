@@ -10,7 +10,6 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    // @Valid 검증 실패
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleValidationException(MethodArgumentNotValidException e) {
 
@@ -24,14 +23,13 @@ public class GlobalExceptionHandler {
                 .body(Map.of("message", errorMessage));
     }
 
-    // 비즈니스 로직 에러 (핵심)
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException e) {
 
         switch (e.getMessage()) {
 
             case "USER_NOT_FOUND":
-            case "TARGET_USER_NOT_FOUND":   // 🔥 추가
+            case "TARGET_USER_NOT_FOUND":
                 return ResponseEntity
                         .status(HttpStatus.NOT_FOUND)
                         .body(Map.of("message", "존재하지 않는 사용자입니다."));
@@ -40,6 +38,11 @@ public class GlobalExceptionHandler {
                 return ResponseEntity
                         .status(HttpStatus.NOT_FOUND)
                         .body(Map.of("message", "채팅방 정보가 존재하지 않습니다."));
+
+            case "SELF_CHAT_NOT_ALLOWED":
+                return ResponseEntity
+                        .badRequest()
+                        .body(Map.of("message", "자기 자신과는 채팅을 시작할 수 없습니다."));
 
             case "INVALID_PASSWORD":
                 return ResponseEntity
@@ -61,11 +64,6 @@ public class GlobalExceptionHandler {
                         .badRequest()
                         .body(Map.of("message", "올바르지 않은 전화번호 형식입니다"));
 
-            case "SELF_CHAT_NOT_ALLOWED":   // 🔥 추가
-                return ResponseEntity
-                        .badRequest()
-                        .body(Map.of("message", "자기 자신과는 대화할 수 없습니다."));
-
             default:
                 return ResponseEntity
                         .badRequest()
@@ -73,7 +71,6 @@ public class GlobalExceptionHandler {
         }
     }
 
-    // 기타 예외 (진짜 서버 에러)
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleException(Exception e) {
 

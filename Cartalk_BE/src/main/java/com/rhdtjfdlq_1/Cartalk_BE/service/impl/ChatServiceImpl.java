@@ -28,10 +28,10 @@ public class ChatServiceImpl implements ChatService {
     public ResponseCreateChatDto getOrCreateChatRoom(Long loginUserId, RequestCreateChatDto request) {
 
         UserEntity loginUser = userRepository.findById(loginUserId)
-                .orElseThrow(() -> new RuntimeException("USER_NOT_FOUND"));
+                .orElseThrow(() -> new IllegalArgumentException("USER_NOT_FOUND"));
 
         UserEntity targetUser = userRepository.findById(request.getTargetUserId())
-                .orElseThrow(() -> new RuntimeException("TARGET_USER_NOT_FOUND"));
+                .orElseThrow(() -> new IllegalArgumentException("TARGET_USER_NOT_FOUND"));
 
         if (loginUser.getId().equals(targetUser.getId())) {
             throw new IllegalArgumentException("SELF_CHAT_NOT_ALLOWED");
