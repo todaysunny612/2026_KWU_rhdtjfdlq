@@ -36,10 +36,14 @@ public class CarInfoController {
                 registration
         );
 
-        carInfoService.registerCar(userId, request);
+        // 🔥 반환값 받기
+        ResponseCarInfoDto response = carInfoService.registerCar(userId, request);
 
         return ResponseEntity.ok(
-                Map.of("message", "차량 등록이 완료되었습니다.")
+                Map.of(
+                        "message", "차량 등록이 완료되었습니다.",
+                        "data", response
+                )
         );
     }
 
@@ -56,16 +60,19 @@ public class CarInfoController {
 
         RequestCarInfoDto request = new RequestCarInfoDto(
                 vehicleType,
-                null, // carNum 수정 안함
+                null,
                 comment,
                 carProfile,
                 registration
         );
 
-        carInfoService.updateCar(userId, carId, request);
+        ResponseCarInfoDto response = carInfoService.updateCar(userId, carId, request);
 
         return ResponseEntity.ok(
-                Map.of("message", "차량 정보 수정이 완료되었습니다.")
+                Map.of(
+                        "message", "차량 정보 수정이 완료되었습니다.",
+                        "data", response
+                )
         );
     }
 

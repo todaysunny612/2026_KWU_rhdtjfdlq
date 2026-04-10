@@ -31,15 +31,10 @@ public class GlobalExceptionHandler {
         switch (e.getMessage()) {
 
             case "USER_NOT_FOUND":
-            case "TARGET_USER_NOT_FOUND":   // 🔥 추가
+            case "TARGET_USER_NOT_FOUND":
                 return ResponseEntity
                         .status(HttpStatus.NOT_FOUND)
                         .body(Map.of("message", "존재하지 않는 사용자입니다."));
-
-            case "CHAT_ROOM_NOT_FOUND":
-                return ResponseEntity
-                        .status(HttpStatus.NOT_FOUND)
-                        .body(Map.of("message", "채팅방 정보가 존재하지 않습니다."));
 
             case "INVALID_PASSWORD":
                 return ResponseEntity
@@ -75,6 +70,27 @@ public class GlobalExceptionHandler {
                 return ResponseEntity
                         .status(HttpStatus.NOT_FOUND)
                         .body(Map.of("message", "존재하지 않는 채팅방입니다."));
+
+            case "CAR_NOT_FOUND":
+                return ResponseEntity
+                        .status(HttpStatus.NOT_FOUND)
+                        .body(Map.of("message", "존재하지 않는 차량입니다."));
+
+            case "CAR_VERIFICATION_FAILED":
+                return ResponseEntity
+                        .badRequest()
+                        .body(Map.of("message", "차량 인증에 실패했습니다."));
+
+            case "OCR_SERVER_ERROR":
+            case "OCR_REQUEST_FAILED":
+                return ResponseEntity
+                        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(Map.of("message", "OCR 서버 통신 오류"));
+
+            case "OCR_INVALID_RESPONSE":
+                return ResponseEntity
+                        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(Map.of("message", "OCR 응답 형식 오류"));
 
             default:
                 return ResponseEntity

@@ -4,6 +4,7 @@ import com.rhdtjfdlq_1.Cartalk_BE.dto.RequestCarInfoDto;
 import com.rhdtjfdlq_1.Cartalk_BE.dto.ResponseCarInfoDto;
 import com.rhdtjfdlq_1.Cartalk_BE.entity.CarEntity;
 import com.rhdtjfdlq_1.Cartalk_BE.entity.UserEntity;
+import com.rhdtjfdlq_1.Cartalk_BE.external.OcrClient;
 import com.rhdtjfdlq_1.Cartalk_BE.repository.CarInfoRepository;
 import com.rhdtjfdlq_1.Cartalk_BE.repository.UserRepository;
 import com.rhdtjfdlq_1.Cartalk_BE.service.port.CarInfoService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 
 @Service
@@ -21,6 +23,7 @@ public class CarInfoServiceImpl implements CarInfoService {
 
     private final CarInfoRepository carRepository;
     private final UserRepository userRepository;
+    private final OcrClient ocrClient; // 🔥 추가
 
     // 차량 등록
     @Override
@@ -46,6 +49,21 @@ public class CarInfoServiceImpl implements CarInfoService {
 
         // 등록증 필수 + 파일 타입 검증
         validateRequiredFile(request.getRegistration());
+
+        // 🔥 OCR 검증 (핵심)
+        File tempFile = convertToFile(request.getRegistration());
+
+        boolean isValid = ocrClient.verifyCar(
+                request.getCarNum(),
+                tempFile
+        );
+
+        // temp 파일 삭제
+        tempFile.delete();
+
+        if (!isValid) {
+            throw new IllegalArgumentException("CAR_VERIFICATION_FAILED");
+        }
 
         // 프로필 파일도 타입 검사
         if (isValidFile(request.getCarProfile())) {
@@ -78,22 +96,19 @@ public class CarInfoServiceImpl implements CarInfoService {
         CarEntity car = carRepository.findByIdAndUserId(carId, userId)
                 .orElseThrow(() -> new IllegalArgumentException("차량을 찾을 수 없습니다."));
 
-        // 🔥 vehicleType (null 방지)
         String vehicleType = car.getVehicleType();
         if (request.getVehicleType() != null && !request.getVehicleType().isBlank()) {
             vehicleType = request.getVehicleType();
         }
 
-        // 🔥 comment (null 방지)
         String comment = car.getComment();
         if (request.getComment() != null) {
             comment = request.getComment();
         }
 
-        // 기존 값 유지
         String profileUrl = car.getCarProfile();
         if (isValidFile(request.getCarProfile())) {
-            validateFileType(request.getCarProfile()); // 🔥 추가
+            validateFileType(request.getCarProfile());
             profileUrl = uploadFile(request.getCarProfile());
         }
 
@@ -103,7 +118,6 @@ public class CarInfoServiceImpl implements CarInfoService {
             registrationUrl = uploadFile(request.getRegistration());
         }
 
-        // 엔티티 수정
         car.updateCarInfo(
                 vehicleType,
                 profileUrl,
@@ -145,6 +159,17 @@ public class CarInfoServiceImpl implements CarInfoService {
         carRepository.delete(car);
     }
 
+    // 🔥 MultipartFile → File 변환
+    private File convertToFile(MultipartFile multipartFile) {
+        try {
+            File file = File.createTempFile("upload", multipartFile.getOriginalFilename());
+            multipartFile.transferTo(file);
+            return file;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("FILE_CONVERT_FAILED");
+        }
+    }
+
     // 파일 검증
     private void validateRequiredFile(MultipartFile file) {
         if (file == null || file.isEmpty()) {
@@ -175,7 +200,6 @@ public class CarInfoServiceImpl implements CarInfoService {
             return null;
         }
 
-        // TODO: S3 연동 예정
         return "https://dummy-url.com/" + file.getOriginalFilename();
     }
 }
