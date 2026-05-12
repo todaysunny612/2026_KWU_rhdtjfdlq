@@ -92,6 +92,11 @@ public class GlobalExceptionHandler {
                         .status(HttpStatus.INTERNAL_SERVER_ERROR)
                         .body(Map.of("message", "OCR 응답 형식 오류"));
 
+            case "EMPTY_FILE":
+                return ResponseEntity
+                        .badRequest()
+                        .body(Map.of("message", "파일이 비어있습니다."));
+
             default:
                 return ResponseEntity
                         .badRequest()

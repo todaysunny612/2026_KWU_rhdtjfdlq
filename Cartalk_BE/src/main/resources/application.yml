@@ -1,4 +1,7 @@
 spring:
+  application:
+    name: Cartalk
+
   datasource:
     url: jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres?sslmode=require
     username: postgres.mjeookkdidoazupgfvrs
@@ -9,9 +12,16 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
   mail:
     host: smtp.gmail.com
     port: 587
     properties:
-      mail.smtp.auth: true
-      mail.smtp.starttls.enable: true
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+file:
+  upload-dir: C:/uploads/
