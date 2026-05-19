@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import './Sidebar.css'
 
 import chatActive from '../../assets/sidebar/chat-active.svg'
@@ -11,11 +11,13 @@ import logout from '../../assets/sidebar/logout.svg'
 
 const Sidebar = () => {
   const location = useLocation()
+  const navigate = useNavigate()
 
   const isProfileActive = location.pathname === '/settings' || location.pathname === '/vehicle-edit'
 
   const handleLogout = () => {
     alert('로그아웃 되었습니다.')
+    navigate('/login')
   }
 
   return (

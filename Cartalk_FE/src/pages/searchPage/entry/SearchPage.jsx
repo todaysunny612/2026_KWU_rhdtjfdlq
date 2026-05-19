@@ -9,9 +9,9 @@ import logoSrc from '../../../assets/logo/CarTALK.svg'
 import './SearchPage.css'
 
 const api = axios.create({
-  baseURL: 'http://백엔드_서버_주소',
+  baseURL: '',
   withCredentials: true,
-  headers: { 'content-type': 'application/json' }
+  headers: { 'content-type': 'application/json' },
 })
 
 export default function SearchPage() {
@@ -19,16 +19,15 @@ export default function SearchPage() {
   const [IS_SEARCH_NONE, SET_IS_SEARCH_NONE] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [recentChats, setRecentChats] = useState([])
-  
+
   const navigate = useNavigate()
 
   // [API 2] 최근 채팅 목록 불러오기
   useEffect(() => {
     const fetchRecentChats = async () => {
       try {
-       
         const response = await api.get('/api/chats/top')
-        
+
         setRecentChats(response.data.chats || [])
       } catch (error) {
         console.error('최근 채팅 목록 로드 실패:', error)
@@ -41,25 +40,24 @@ export default function SearchPage() {
 
   // [API 1] 차량번호 검색 핸들러
   const handleSearch = async () => {
-    if (!searchValue.trim() || isLoading) return;
+    if (!searchValue.trim() || isLoading) return
 
     setIsLoading(true)
-    SET_IS_SEARCH_NONE(false) 
+    SET_IS_SEARCH_NONE(false)
 
     try {
       const response = await api.get('/api/cars', {
-        params: { carNum: searchValue }
+        params: { carNum: searchValue },
       })
 
       const { carNum, owner } = response.data
-      navigate('/chat', { 
-        state: { 
-          userId: owner.userId, 
-          carNum: carNum, 
-          nickname: owner.nickname 
-        } 
+      navigate('/chat', {
+        state: {
+          userId: owner.userId,
+          carNum: carNum,
+          nickname: owner.nickname,
+        },
       })
-
     } catch (error) {
       if (error.response && error.response.status === 404) {
         SET_IS_SEARCH_NONE(true)
@@ -93,11 +91,7 @@ export default function SearchPage() {
               onChange={(e) => setSearchValue(e.target.value)}
               onKeyDown={handleKeyDown}
             />
-            <button 
-              className='search__btn' 
-              onClick={handleSearch}
-              disabled={isLoading}
-            >
+            <button className='search__btn' onClick={handleSearch} disabled={isLoading}>
               {isLoading ? '...' : '검색'}
             </button>
           </div>
@@ -120,7 +114,7 @@ export default function SearchPage() {
                 />
               ))
             ) : (
-              <p className="search__no-chats">최근 채팅이 없어요</p>
+              <p className='search__no-chats'>최근 채팅이 없어요</p>
             )}
           </div>
         </div>
@@ -134,9 +128,7 @@ export default function SearchPage() {
         </div>
       </main>
 
-      {IS_SEARCH_NONE && (
-        <SearchNoneModal onClose={() => SET_IS_SEARCH_NONE(false)} />
-      )}
+      {IS_SEARCH_NONE && <SearchNoneModal onClose={() => SET_IS_SEARCH_NONE(false)} />}
     </div>
   )
 }

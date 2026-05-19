@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import './SignupPage.css'
 import Button from '../../../components/button/Button'
+import ProfileSettingsModal from '../../settingsPage/components/profileSettingsModal/ProfileSettingsModal'
+import './SignupPage.css'
 
 export default function SignupPage() {
   const [email, setEmail] = useState('')
   const [verifyCode, setVerifyCode] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false) // 회원가입 성공 시 프로필 모달
 
   const navigate = useNavigate()
 
@@ -75,7 +77,7 @@ export default function SignupPage() {
 
       //성공 시 처리
       alert(response.data.message || '회원가입이 완료되었습니다!')
-      navigate('/login')
+      setIsProfileModalOpen(true) // 프로필 설정 모달 오픈
     } catch (error) {
       //에러 발생 시 처리
       if (error.response) {
@@ -164,6 +166,17 @@ export default function SignupPage() {
           </Button>
         </form>
       </div>
+
+      {/* 프로필 설정 모달 */}
+      {isProfileModalOpen && (
+        <ProfileSettingsModal
+          initialData={{ email: email }}
+          onClose={() => navigate('/login')}
+          onSuccess={(updatedData) => {
+            navigate('/', { state: { profileData: updatedData } })
+          }}
+        />
+      )}
     </main>
   )
 }

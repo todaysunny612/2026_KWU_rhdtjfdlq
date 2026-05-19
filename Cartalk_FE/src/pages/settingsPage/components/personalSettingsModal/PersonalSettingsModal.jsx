@@ -2,7 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import InputField from '../../../../components/inputField/InputField'
 import Button from '../../../../components/button/Button'
-import './PersonalSettingsModal.css' 
+import './PersonalSettingsModal.css'
 
 export default function PersonalSettingsModal({ onClose }) {
   const [isLoading, setIsLoading] = useState(false)
@@ -28,8 +28,8 @@ export default function PersonalSettingsModal({ onClose }) {
 
     try {
       const token = localStorage.getItem('access_token')
-      const email = localStorage.getItem('user_email') 
-      const API_DOMAIN = 'http://백엔드_서버_주소'
+      const email = localStorage.getItem('user_email')
+      const API_DOMAIN = ''
 
       if (!token || !email) {
         alert('로그인 정보가 없습니다. 다시 로그인해 주세요.')
@@ -37,22 +37,21 @@ export default function PersonalSettingsModal({ onClose }) {
       }
 
       const response = await axios.patch(
-        `${API_DOMAIN}/api/auth/account/${email}`,
+        `/api/auth/account/${email}`,
         {
           name: formData.name,
-          phoneNumber: formData.phoneNumber
+          phoneNumber: formData.phoneNumber,
         },
         {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': token 
-          }
-        }
+            Authorization: token,
+          },
+        },
       )
 
       alert(response.data.message || '내 정보가 설정 되었습니다.')
-      onClose() 
-
+      onClose()
     } catch (error) {
       if (error.response && error.response.status === 400) {
         alert(error.response.data.message || '입력 형식이 올바르지 않습니다.')
@@ -80,7 +79,7 @@ export default function PersonalSettingsModal({ onClose }) {
             <InputField
               id='personal-name'
               type='text'
-              name='name' 
+              name='name'
               placeholder='예: 양의지'
               value={formData.name}
               onChange={handleChange}
@@ -92,7 +91,7 @@ export default function PersonalSettingsModal({ onClose }) {
             <InputField
               id='personal-phone'
               type='text'
-              name='phoneNumber' 
+              name='phoneNumber'
               placeholder='예: 010-1234-5678'
               value={formData.phoneNumber}
               onChange={handleChange}
