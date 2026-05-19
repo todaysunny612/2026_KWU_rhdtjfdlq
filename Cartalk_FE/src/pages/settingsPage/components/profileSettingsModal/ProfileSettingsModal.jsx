@@ -6,7 +6,7 @@ import './ProfileSettingsModal.css'
 
 export default function ProfileSettingsModal({ initialData, onClose, onSuccess }) {
   const [isLoading, setIsLoading] = useState(false)
-  
+
   // 파일 탐색기를 열기
   const fileInputRef = useRef(null)
 
@@ -14,7 +14,7 @@ export default function ProfileSettingsModal({ initialData, onClose, onSuccess }
   const [formData, setFormData] = useState({
     nickName: initialData?.nickName || '',
     message: initialData?.message || '',
-    profile: initialData?.profile || '', 
+    profile: initialData?.profile || '',
   })
 
   // 텍스트 입력 감지
@@ -25,7 +25,7 @@ export default function ProfileSettingsModal({ initialData, onClose, onSuccess }
 
   // 사진 업로드 클릭 시 동작
   const handlePhotoUploadClick = () => {
-    fileInputRef.current.click() 
+    fileInputRef.current.click()
   }
 
   // 파일 선택 완료 시 동작
@@ -36,10 +36,10 @@ export default function ProfileSettingsModal({ initialData, onClose, onSuccess }
     try {
       const token = localStorage.getItem('access_token')
 
-      const API_DOMAIN = 'http://백엔드_서버_주소'; 
+      const API_DOMAIN = ''
 
       const response = await axios.patch(
-        `${API_DOMAIN}/api/user/profile/${initialData.email}`,
+        `/api/user/profile/${initialData.email}`,
         {
           // Request Body
           nickName: formData.nickName,
@@ -50,14 +50,13 @@ export default function ProfileSettingsModal({ initialData, onClose, onSuccess }
           // Header
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': token, 
+            Authorization: token,
           },
-        }
+        },
       )
 
       alert(response.data.message || '프로필 수정이 완료되었습니다.')
       onSuccess(formData)
-
     } catch (error) {
       // 에러 메시지 처리
       if (error.response?.status === 404) {
@@ -72,13 +71,12 @@ export default function ProfileSettingsModal({ initialData, onClose, onSuccess }
 
   // 파일 첨부를 감지하는 함수 추가
   const handleFileChange = (e) => {
-    const { name, files } = e.target;
+    const { files } = e.target
     if (files && files[0]) {
-      // (기존에 만들어두신 프로필 사진 상태 업데이트 함수가 있다면 여기에 작성)
-      // 예: setProfileFileData(files[0]);
-      console.log('파일이 첨부되었습니다:', files[0].name);
+      console.log('파일이 첨부되었습니다:', files[0].name)
+      setFormData((prev) => ({ ...prev, profile: files[0].name }))
     }
-  };
+  }
 
   return (
     <div className='profile-modal__overlay'>
@@ -97,16 +95,16 @@ export default function ProfileSettingsModal({ initialData, onClose, onSuccess }
             <p className='profile-modal__photo-title'>프로필 사진</p>
             <p className='profile-modal__photo-desc'>PDF, PNG, JPG 파일만 업로드 가능해요</p>
           </div>
-          
+
           {/* 화면에 보이지 않는 실제 파일 업로드 인풋 */}
-          <input 
-            type="file" 
-            accept=".pdf, .png, .jpg, .jpeg" 
-            style={{ display: 'none' }} 
-            ref={fileInputRef} 
-            onChange={handleFileChange} 
+          <input
+            type='file'
+            accept='.pdf, .png, .jpg, .jpeg'
+            style={{ display: 'none' }}
+            ref={fileInputRef}
+            onChange={handleFileChange}
           />
-          
+
           {/* 사진 업로드 버튼 */}
           <Button variant='outline' onClick={handlePhotoUploadClick}>
             사진 업로드

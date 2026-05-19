@@ -12,7 +12,7 @@ import chatNoneIcon from '../../../assets/chat/chat-none.svg'
 import './ChatPage.css'
 
 const api = axios.create({
-  baseURL: 'http://백엔드_서버_주소',
+  baseURL: '',
   withCredentials: true,
   headers: { 'content-type': 'application/json' },
 })
@@ -52,8 +52,8 @@ export default function ChatPage() {
 
   useEffect(() => {
     if (!state || !state.userId) {
-      console.error('상대방 유저 정보가 없습니다.')
-      navigate('/')
+      setIsChatActive(false)
+      setIsRoomLoading(false)
     }
   }, [state, navigate])
 

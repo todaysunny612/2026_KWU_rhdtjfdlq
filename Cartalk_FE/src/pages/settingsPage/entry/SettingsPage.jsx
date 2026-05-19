@@ -25,21 +25,21 @@ export default function SettingsPage() {
     const fetchMyProfile = async () => {
       try {
         const token = localStorage.getItem('access_token')
-        const email = localStorage.getItem('user_email') 
+        const email = localStorage.getItem('user_email')
 
         if (!token || !email) return
 
-        const API_DOMAIN = 'http://백엔드_서버_주소입력' // 실제 서버 주소로 변경 필요
+        const API_DOMAIN = ''
 
         const response = await axios.get(`${API_DOMAIN}/api/user/profile/${email}`, {
-          headers: { 
+          headers: {
             'Content-Type': 'application/json',
-            'Authorization': token 
-          }
+            Authorization: token,
+          },
         })
-        
+
         setProfileData({
-          email: email, 
+          email: email,
           nickName: response.data.nickName,
           message: response.data.message,
           profile: response.data.profile,
@@ -49,20 +49,12 @@ export default function SettingsPage() {
         console.error('프로필 정보를 불러오지 못했습니다.', error)
       }
     }
-    
+
     fetchMyProfile()
   }, [])
 
-  // 차량 목록 조회 api 필요??
-  const vehicles = [
-    {
-      id: 1,
-      plateNumber: '12가 3456',
-      type: '현대 아반떼 CN7',
-      note: '원래 범퍼에 스크래치가 있습니다',
-      isVerified: true,
-    },
-  ]
+  // 차량 목록 조회 api 필요
+  const vehicles = []
 
   const handleVehicleSave = () => {
     setIsVehicleEditing(false)
@@ -110,17 +102,15 @@ export default function SettingsPage() {
               onClick={() => navigate('/vehicle-edit')}
             />
           ))}
-          {isVehicleEditing && (
-            <VehicleAddCard onClick={() => navigate('/vehicle-edit')} />
-          )}
+          {isVehicleEditing && <VehicleAddCard onClick={() => navigate('/vehicle-edit')} />}
         </div>
       </main>
 
       {/* 모달 연동 부분 (변경 없음) */}
       {isProfileModalOpen && (
-        <ProfileSettingsModal 
+        <ProfileSettingsModal
           initialData={profileData}
-          onClose={() => setIsProfileModalOpen(false)} 
+          onClose={() => setIsProfileModalOpen(false)}
           onSuccess={(updatedData) => {
             setProfileData((prev) => ({ ...prev, ...updatedData }))
             setIsProfileModalOpen(false)
