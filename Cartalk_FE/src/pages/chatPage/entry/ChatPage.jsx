@@ -65,7 +65,8 @@ export default function ChatPage() {
       setIsRoomLoading(true)
       try {
         const response = await api.post('/api/chats', {
-          targetUserId: state.userId, // userId 제거 완료
+          userId: Number(localStorage.getItem('user_id')),
+          targetUserId: state.userId,
         })
         setChatId(response.data.chatId)
       } catch (error) {
@@ -85,7 +86,10 @@ export default function ChatPage() {
 
     try {
       const response = await api.get(`/api/chats/${chatId}/messages`, {
-        params: { limit: 30 }, // userId 파라미터 제거 완료
+        params: {
+          userId: Number(localStorage.getItem('user_id')),
+          limit: 30,
+        },
       })
 
       const fetchedMessages = response.data.messages || []
@@ -128,6 +132,7 @@ export default function ChatPage() {
 
     try {
       await api.post(`/api/chats/${chatId}/messages`, {
+        userId: Number(localStorage.getItem('user_id')),
         content: currentText,
         messageType: 'TEXT',
       })
@@ -186,7 +191,7 @@ export default function ChatPage() {
     }
   }
 
-  // 안심전화 버튼 클릭 핸들러
+  // const response = await api.post(`/api/chats/${chatId}/calls`심전화 버튼 클릭 핸들러
   const handleSafeCall = () => {
     if (isCallAvailable === false || (remainingCount !== null && remainingCount === 0)) {
       SET_IS_CALL_RESTRICT_OPEN(true)
@@ -200,7 +205,9 @@ export default function ChatPage() {
     if (!chatId) return
 
     try {
-      const response = await api.post(`/api/chats/${chatId}/calls`)
+      const response = await api.post(`/api/chats/${chatId}/calls`, {
+        userId: Number(localStorage.getItem('user_id')),
+      })
 
       const { call, callAvailable } = response.data
 
