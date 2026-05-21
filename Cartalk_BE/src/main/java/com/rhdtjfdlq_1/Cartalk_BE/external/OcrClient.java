@@ -5,6 +5,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
@@ -19,6 +20,12 @@ public class OcrClient {
     public boolean verifyCar(String carNumber, File file) {
 
         try {
+            System.out.println("[OCR] 요청 시작");
+            System.out.println("[OCR] carNumber = " + carNumber);
+            System.out.println("[OCR] file exists = " + file.exists());
+            System.out.println("[OCR] file path = " + file.getAbsolutePath());
+            System.out.println("[OCR] file length = " + file.length());
+
             MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
             body.add("car_number", carNumber);
             body.add("file", new FileSystemResource(file));
@@ -35,6 +42,9 @@ public class OcrClient {
                     Map.class
             );
 
+            System.out.println("[OCR] status = " + response.getStatusCode());
+            System.out.println("[OCR] body = " + response.getBody());
+
             if (response.getStatusCode() != HttpStatus.OK) {
                 throw new IllegalArgumentException("OCR_SERVER_ERROR");
             }
@@ -47,8 +57,14 @@ public class OcrClient {
 
             return Boolean.TRUE.equals(responseBody.get("match"));
 
+        } catch (HttpStatusCodeException e) {
+            System.out.println("[OCR] HTTP 에러 상태 = " + e.getStatusCode());
+            System.out.println("[OCR] HTTP 에러 응답 = " + e.getResponseBodyAsString());
+            throw new IllegalArgumentException("OCR_REQUEST_FAILED: " + e.getResponseBodyAsString());
+
         } catch (Exception e) {
-            throw new IllegalArgumentException("OCR_REQUEST_FAILED");
+            e.printStackTrace();
+            throw new IllegalArgumentException("OCR_REQUEST_FAILED: " + e.getMessage());
         }
     }
 }

@@ -18,26 +18,28 @@ public class SearchServiceImpl implements SearchService {
     @Transactional(readOnly = true)
     public ResponseSearchDto searchByCarNum(String carNum) {
 
-        // 1. 차량번호 정규화
         String normalized = normalize(carNum);
 
-        // 2. 조회 (없으면 예외)
         CarEntity car = carInfoRepository.findByCarNum(normalized)
                 .orElseThrow(() -> new IllegalArgumentException("CAR_NOT_FOUND"));
 
-        // 3. DTO 변환
+        String ownerNickName = "알 수 없음";
+
+        if (car.getUser() != null && car.getUser().getNickName() != null) {
+            ownerNickName = car.getUser().getNickName();
+        }
+
         return new ResponseSearchDto(
                 car.getCarNum(),
-                new ResponseSearchDto.Owner(
-                        car.getUser().getNickName()
-                )
+                new ResponseSearchDto.Owner(ownerNickName)
         );
     }
 
-    // =========================
-    // 차량번호 정규화
-    // =========================
     private String normalize(String carNum) {
+        if (carNum == null) {
+            return "";
+        }
+
         return carNum.replaceAll("[^0-9가-힣]", "");
     }
 }

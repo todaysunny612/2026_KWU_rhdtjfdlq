@@ -9,12 +9,20 @@ import com.rhdtjfdlq_1.Cartalk_BE.repository.CarInfoRepository;
 import com.rhdtjfdlq_1.Cartalk_BE.repository.UserRepository;
 import com.rhdtjfdlq_1.Cartalk_BE.service.port.CarInfoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -23,17 +31,18 @@ public class CarInfoServiceImpl implements CarInfoService {
 
     private final CarInfoRepository carRepository;
     private final UserRepository userRepository;
-    private final OcrClient ocrClient; // 🔥 추가
+    private final OcrClient ocrClient;
+
+    @Value("${file.upload-dir}")
+    private String uploadDir;
 
     // 차량 등록
     @Override
     public ResponseCarInfoDto registerCar(Long userId, RequestCarInfoDto request) {
 
-        // 유저 조회
         UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("USER_NOT_FOUND"));
 
-        // 필수 값 검증
         if (request.getVehicleType() == null || request.getVehicleType().isBlank()) {
             throw new IllegalArgumentException("차량 종류 입력은 필수입니다.");
         }
@@ -42,7 +51,6 @@ public class CarInfoServiceImpl implements CarInfoService {
             throw new IllegalArgumentException("차량 번호는 필수입니다.");
         }
 
-        // 차량 번호 중복 체크
         if (carRepository.existsByCarNum(request.getCarNum())) {
             throw new IllegalArgumentException("이미 등록된 차량 번호입니다.");
         }
@@ -50,7 +58,7 @@ public class CarInfoServiceImpl implements CarInfoService {
         // 등록증 필수 + 파일 타입 검증
         validateRequiredFile(request.getRegistration());
 
-        // 🔥 OCR 검증 (핵심)
+        // OCR 검증
         File tempFile = convertToFile(request.getRegistration());
 
         boolean isValid = ocrClient.verifyCar(
@@ -58,23 +66,21 @@ public class CarInfoServiceImpl implements CarInfoService {
                 tempFile
         );
 
-        // temp 파일 삭제
         tempFile.delete();
 
         if (!isValid) {
             throw new IllegalArgumentException("CAR_VERIFICATION_FAILED");
         }
 
-        // 프로필 파일도 타입 검사
+        // 차량 프로필 사진 타입 검증
         if (isValidFile(request.getCarProfile())) {
             validateFileType(request.getCarProfile());
         }
 
-        // 파일 업로드
+        // 실제 파일 저장
         String profileUrl = uploadFile(request.getCarProfile());
         String registrationUrl = uploadFile(request.getRegistration());
 
-        // 엔티티 생성
         CarEntity car = CarEntity.builder()
                 .vehicleType(request.getVehicleType())
                 .carNum(request.getCarNum())
@@ -159,22 +165,34 @@ public class CarInfoServiceImpl implements CarInfoService {
         carRepository.delete(car);
     }
 
-    // 🔥 MultipartFile → File 변환
+    // MultipartFile → OCR 검증용 임시 File 변환
     private File convertToFile(MultipartFile multipartFile) {
         try {
-            File file = File.createTempFile("upload", multipartFile.getOriginalFilename());
-            multipartFile.transferTo(file);
+            String extension = StringUtils.getFilenameExtension(multipartFile.getOriginalFilename());
+
+            if (extension == null || extension.isBlank()) {
+                extension = "tmp";
+            }
+
+            File file = File.createTempFile("upload-", "." + extension);
+
+            try (InputStream inputStream = multipartFile.getInputStream()) {
+                Files.copy(inputStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            }
+
             return file;
+
         } catch (Exception e) {
             throw new IllegalArgumentException("FILE_CONVERT_FAILED");
         }
     }
 
-    // 파일 검증
+    // 등록증 필수 검증
     private void validateRequiredFile(MultipartFile file) {
         if (file == null || file.isEmpty()) {
             throw new IllegalArgumentException("등록증은 필수입니다.");
         }
+
         validateFileType(file);
     }
 
@@ -188,18 +206,46 @@ public class CarInfoServiceImpl implements CarInfoService {
         if (contentType == null ||
                 !(contentType.equals("image/png")
                         || contentType.equals("image/jpeg")
+                        || contentType.equals("image/jpg")
                         || contentType.equals("application/pdf"))) {
 
             throw new IllegalArgumentException("INVALID_FILE_TYPE");
         }
     }
 
-    // 파일 업로드 (임시)
+    // 실제 파일 저장
     private String uploadFile(MultipartFile file) {
         if (file == null || file.isEmpty()) {
             return null;
         }
 
-        return "https://dummy-url.com/" + file.getOriginalFilename();
+        try {
+            String extension = StringUtils.getFilenameExtension(file.getOriginalFilename());
+
+            if (extension == null || extension.isBlank()) {
+                throw new IllegalArgumentException("INVALID_FILE_EXTENSION");
+            }
+
+            String fileName = UUID.randomUUID() + "." + extension;
+
+            Path uploadPath = Paths.get(uploadDir)
+                    .toAbsolutePath()
+                    .normalize();
+
+            Files.createDirectories(uploadPath);
+
+            Path targetPath = uploadPath
+                    .resolve(fileName)
+                    .normalize();
+
+            try (InputStream inputStream = file.getInputStream()) {
+                Files.copy(inputStream, targetPath, StandardCopyOption.REPLACE_EXISTING);
+            }
+
+            return "http://localhost:8080/uploads/" + fileName;
+
+        } catch (Exception e) {
+            throw new IllegalArgumentException("FILE_UPLOAD_FAILED");
+        }
     }
 }
