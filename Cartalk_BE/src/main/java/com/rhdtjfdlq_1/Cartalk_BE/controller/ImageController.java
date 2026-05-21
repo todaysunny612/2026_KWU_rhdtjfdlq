@@ -8,8 +8,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.UUID;
 
 @RestController
@@ -35,28 +37,30 @@ public class ImageController {
                 (!contentType.equals("image/jpeg")
                         && !contentType.equals("image/png")
                         && !contentType.equals("image/jpg"))) {
-
             throw new IllegalArgumentException("INVALID_FILE_TYPE");
         }
 
-        File directory = new File(uploadDir);
+        String extension = StringUtils.getFilenameExtension(image.getOriginalFilename());
 
-        if (!directory.exists()) {
-            directory.mkdirs();
+        if (extension == null || extension.isBlank()) {
+            throw new IllegalArgumentException("INVALID_FILE_EXTENSION");
         }
-
-        String extension =
-                StringUtils.getFilenameExtension(image.getOriginalFilename());
 
         String fileName = UUID.randomUUID() + "." + extension;
 
-        // 여기 수정
-        File targetFile = new File(directory, fileName);
+        Path uploadPath = Paths.get(uploadDir)
+                .toAbsolutePath()
+                .normalize();
 
-        image.transferTo(targetFile);
+        Files.createDirectories(uploadPath);
 
-        String imageUrl =
-                "http://localhost:8080/uploads/" + fileName;
+        Path targetPath = uploadPath
+                .resolve(fileName)
+                .normalize();
+
+        Files.copy(image.getInputStream(), targetPath);
+
+        String imageUrl = "http://localhost:8080/uploads/" + fileName;
 
         return new ResponseImageUploadDto(imageUrl);
     }
