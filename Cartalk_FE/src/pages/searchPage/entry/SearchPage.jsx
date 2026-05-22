@@ -54,11 +54,20 @@ export default function SearchPage() {
 
       const { carNum, owner } = response.data
 
+      const myId = Number(localStorage.getItem('user_id'))
+      if (owner.userId === myId) {
+        alert('내 차량은 채팅할 수 없습니다.')
+        setIsLoading(false)
+        return
+      }
+
       navigate('/chat', {
         state: {
           userId: owner.userId,
           carNum: carNum,
           nickname: owner.nickName,
+          avatarUrl: owner.profile,
+          isVerified: owner.registerCar,
         },
       })
     } catch (error) {
@@ -113,12 +122,15 @@ export default function SearchPage() {
                   plateNumber={chat.carNum}
                   lastMessage={chat.lastMessage || '아직 대화가 없어요'}
                   isVerified={chat.registerCar}
+                  avatarUrl={chat.owner?.profile}
                   onClick={() =>
                     navigate('/chat', {
                       state: {
                         chatId: chat.chatId,
                         carNum: chat.carNum,
                         nickname: chat.owner?.nickName || '',
+                        userId: chat.owner?.userId,
+                        isVerified: chat.registerCar,
                       },
                     })
                   }
@@ -139,7 +151,15 @@ export default function SearchPage() {
         </div>
       </main>
 
-      {IS_SEARCH_NONE && <SearchNoneModal onClose={() => SET_IS_SEARCH_NONE(false)} />}
+      {IS_SEARCH_NONE && (
+        <>
+          <div
+            style={{ position: 'fixed', inset: 0, zIndex: 199 }}
+            onClick={() => SET_IS_SEARCH_NONE(false)}
+          />
+          <SearchNoneModal onClose={() => SET_IS_SEARCH_NONE(false)} />
+        </>
+      )}
     </div>
   )
 }
