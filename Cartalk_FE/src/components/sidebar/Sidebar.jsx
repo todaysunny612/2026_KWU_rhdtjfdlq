@@ -1,4 +1,5 @@
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import './Sidebar.css'
 
 import chatActive from '../../assets/sidebar/chat-active.svg'
@@ -26,6 +27,33 @@ const Sidebar = () => {
     navigate('/login')
   }
 
+  const handleChatClick = async (e) => {
+    e.preventDefault()
+    try {
+      const userId = Number(localStorage.getItem('user_id'))
+      const response = await axios.get('/api/chats/top', {
+        params: { userId },
+      })
+      const chats = response.data.chats || []
+      if (chats.length > 0) {
+        const first = chats[0]
+        navigate('/chat', {
+          state: {
+            chatId: first.chatId,
+            carNum: first.carNum,
+            nickname: first.owner?.nickName || '',
+            userId: first.owner?.userId,
+            isVerified: first.registerCar,
+          },
+        })
+      } else {
+        navigate('/chat')
+      }
+    } catch {
+      navigate('/chat')
+    }
+  }
+
   return (
     <nav className='sidebar'>
       <div className='sidebar__col'>
@@ -34,9 +62,9 @@ const Sidebar = () => {
             {() => <img src={isProfileActive ? profileActive : profileDefault} alt='프로필' />}
           </NavLink>
 
-          <NavLink to='/chat'>
-            {({ isActive }) => <img src={isActive ? chatActive : chatDefault} alt='채팅' />}
-          </NavLink>
+          <button onClick={handleChatClick}>
+            <img src={location.pathname === '/chat' ? chatActive : chatDefault} alt='채팅' />
+          </button>
 
           <NavLink to='/'>
             {({ isActive }) => <img src={isActive ? searchActive : searchDefault} alt='검색' />}
