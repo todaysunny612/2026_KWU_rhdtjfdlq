@@ -13,8 +13,14 @@ public class ResponseSearchDto {
     private Owner owner;
 
     @Getter
+    @Builder
     @AllArgsConstructor
     public static class Owner {
+
+        private Long userId;
+
         private String nickName;
+
+        private String profile;
     }
 }

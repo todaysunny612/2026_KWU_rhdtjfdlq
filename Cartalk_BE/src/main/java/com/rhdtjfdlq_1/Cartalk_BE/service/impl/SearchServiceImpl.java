@@ -23,18 +23,27 @@ public class SearchServiceImpl implements SearchService {
         CarEntity car = carInfoRepository.findByCarNum(normalized)
                 .orElseThrow(() -> new IllegalArgumentException("CAR_NOT_FOUND"));
 
+        Long userId = null;
         String ownerNickName = "알 수 없음";
+        String profile = null;
 
-        if (car.getUser() != null && car.getUser().getNickName() != null) {
+        if (car.getUser() != null) {
+            userId = car.getUser().getId();
             ownerNickName = car.getUser().getNickName();
+            profile = car.getUser().getProfile();
         }
 
-        return new ResponseSearchDto(
-                car.getCarNum(),
-                new ResponseSearchDto.Owner(ownerNickName)
-        );
+        return ResponseSearchDto.builder()
+                .carNum(car.getCarNum())
+                .owner(
+                        ResponseSearchDto.Owner.builder()
+                                .userId(userId)
+                                .nickName(ownerNickName)
+                                .profile(profile)
+                                .build()
+                )
+                .build();
     }
-
     private String normalize(String carNum) {
         if (carNum == null) {
             return "";

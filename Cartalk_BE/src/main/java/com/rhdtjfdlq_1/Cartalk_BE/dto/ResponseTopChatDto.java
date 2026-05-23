@@ -22,8 +22,13 @@ public class ResponseTopChatDto {
     private Owner owner;
 
     @Getter
+    @Builder
+    @NoArgsConstructor
     @AllArgsConstructor
     public static class Owner {
+
+        private Long userId;
         private String nickName;
+        private String profile;
     }
 }

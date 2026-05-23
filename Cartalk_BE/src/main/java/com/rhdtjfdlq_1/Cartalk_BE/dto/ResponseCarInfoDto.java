@@ -20,6 +20,7 @@ public class ResponseCarInfoDto {
 
     private String comment;
 
+    private OwnerDto owner;
 
     public static ResponseCarInfoDto from(CarEntity car) {
         return ResponseCarInfoDto.builder()
@@ -28,6 +29,21 @@ public class ResponseCarInfoDto {
                 .carNum(car.getCarNum())
                 .carProfile(car.getCarProfile())
                 .comment(car.getComment())
+                .owner(
+                        OwnerDto.builder()
+                                .userId(car.getUser().getId())
+                                .nickName(car.getUser().getNickName())
+                                .profile(car.getUser().getProfile())
+                                .build()
+                )
                 .build();
+    }
+    @Getter
+    @AllArgsConstructor
+    @Builder
+    public static class OwnerDto {
+        private Long userId;
+        private String nickName;
+        private String profile;
     }
 }

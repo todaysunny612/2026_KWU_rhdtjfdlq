@@ -2,6 +2,7 @@ package com.rhdtjfdlq_1.Cartalk_BE.repository;
 
 import com.rhdtjfdlq_1.Cartalk_BE.entity.CarEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,4 +23,7 @@ public interface CarInfoRepository extends JpaRepository<CarEntity, Long> {
 
     //대표 차량 1개 가져오기
     Optional<CarEntity> findTopByUserId(Long userId);
+
+    @Query("SELECT c FROM CarEntity c JOIN FETCH c.user")
+    List<CarEntity> findAllWithUser();
 }
